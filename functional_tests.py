@@ -37,7 +37,8 @@ class NewVisitorTest(unittest.TestCase):
 		table = self.browser.find_element_by_id("id_list_table")
 		rows = table.find_elements_by_tag_name("tr")
 		self.assertTrue(
-			any(row.text == "1: Buy a friggin napkin" for row in rows)
+			any(row.text == "1: Buy a friggin napkin" for row in rows),
+			"A new item did not appear in the table"
 		)
 		# The text box remains available to insert other items
 		self.fail("Proceed with the tests!")
