@@ -36,16 +36,19 @@ class NewVisitorTest(unittest.TestCase):
 
 		table = self.browser.find_element_by_id("id_list_table")
 		rows = table.find_elements_by_tag_name("tr")
-		self.assertTrue(
-			any(row.text == "1: Buy a friggin napkin" for row in rows),
-			"A new item did not appear in the table"
-		)
+		self.assertIn("1: Buy a friggin napkin", [row.text for row in rows])
 		# The text box remains available to insert other items
-		self.fail("Proceed with the tests!")
-	# User inserts another item in the TO-DO list
-
+		inputbox = self.browser.find_element_by_id("id_new_item")
+		inputbox.send_keys("Use the friggin napkin to wipe yer' bloody nose")
+		inputbox.send_keys(Keys.ENTER)
+		time.sleep(1)
+		# User inserts another item in the TO-DO list
+		table = self.browser.find_element_by_id("id_list_table")
+		rows = table.find_elements_by_tag_name("tr")
+		self.assertIn("1: Buy a friggin napkin", [row.text for row in rows])
+		self.assertIn("", [row.text for row in rows])
 	# Page updates again, now showing two items in the list
-
+		self.fail("Proceed with the tests!")
 	# User wonders if the list is persistent. Sees that the site has generated unique URL for him
 	# there is and explanation text to that effect
 
