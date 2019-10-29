@@ -80,7 +80,7 @@ class NewVisitorTest(LiveServerTestCase):
 
 		## We use new browser session
 		self.browser.quit()
-		self.browser.webdriver.Firefox(
+		self.browser = webdriver.Firefox(
 			executable_path='C:\\Users\\jakub\\OneDrive\\Documents\\Python Scripts\\TDD\\geckodriver.exe')
 
 		# New User visits homepage, there is no sign of previous user's list
