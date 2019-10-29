@@ -12,6 +12,11 @@ class NewVisitorTest(unittest.TestCase):
 	def tearDown(self) -> None:
 		self.browser.quit()
 
+	def check_for_row_in_list_table(self, row_text):
+		table = self.browser.find_element_by_id("id_list_table")
+		rows = table.find_elements_by_tag_name("tr")
+		self.assertIn(row_text, [row.text for row in rows])
+
 	def test_can_start_a_list_and_retrieve_it_later(self):
 		# User checks frontpage
 		self.browser.get("http://localhost:8000")
@@ -34,25 +39,21 @@ class NewVisitorTest(unittest.TestCase):
 		inputbox.send_keys(Keys.ENTER)
 		time.sleep(1)
 
-		table = self.browser.find_element_by_id("id_list_table")
-		rows = table.find_elements_by_tag_name("tr")
-		self.assertIn("1: Buy a friggin napkin", [row.text for row in rows])
+		self.check_for_row_in_list_table("1: Buy a friggin napkin")
 		# The text box remains available to insert other items
+		# User inserts another item in the TO-DO list
 		inputbox = self.browser.find_element_by_id("id_new_item")
 		inputbox.send_keys("Use the friggin napkin to wipe yer' bloody nose")
 		inputbox.send_keys(Keys.ENTER)
 		time.sleep(1)
-		# User inserts another item in the TO-DO list
-		table = self.browser.find_element_by_id("id_list_table")
-		rows = table.find_elements_by_tag_name("tr")
-		self.assertIn("1: Buy a friggin napkin", [row.text for row in rows])
-		self.assertIn("", [row.text for row in rows])
-	# Page updates again, now showing two items in the list
+		# Page updates again, now showing two items in the list
+		self.check_for_row_in_list_table("1: Buy a friggin napkin")
+		self.check_for_row_in_list_table("2: Use the friggin napkin to wipe yer' bloody nose")
+		# User wonders if the list is persistent. Sees that the site has generated unique URL for him
 		self.fail("Proceed with the tests!")
-	# User wonders if the list is persistent. Sees that the site has generated unique URL for him
-	# there is and explanation text to that effect
+		# there is and explanation text to that effect
 
-	# User tries the url to find his list still there
+		# User tries the url to find his list still there
 
 	# Satisfied user leaves for the moment
 
