@@ -122,7 +122,7 @@ class NewVisitorTest(LiveServerTestCase):
 
 		# User starts a new list and notices the centered
 		# inputbox as well
-		inpotbox.send_keys("testing")
+		inputbox.send_keys("testing")
 		inputbox.send_keys(Keys.ENTER)
 		self.wait_for_row_in_list_table("1: testing")
 		inputbox = self.browser.find_element_by_id("id_new_item")
