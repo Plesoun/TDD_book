@@ -33,7 +33,7 @@ class NewVisitorTest(LiveServerTestCase):
 		self.browser.get(self.live_server_url)
 
 		# User notices various features on the front page
-		self.assertIn('To-Do', self.browser.title)
+		self.assertIn('To-Do lists', self.browser.title)
 
 		# User notices the TO-DO title
 		self.assertIn("To-Do", self.browser.title)
