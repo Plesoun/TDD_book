@@ -109,3 +109,5 @@ venv.bak/
 # Misc
 geckodriver.exe
 .idea/
+
+.env
