@@ -4,14 +4,6 @@ from django.utils.html import escape
 from django.core.exceptions import ValidationError
 
 
-class HomePageTest(TestCase):
-
-    def test_uses_home_template(self):
-        response = self.client.get('/')
-        self.assertTemplateUsed(response, 'home.html')
-
-
-
 class NewListTest(TestCase):
 
     def test_can_save_a_POST_request(self):

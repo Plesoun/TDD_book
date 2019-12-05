@@ -16,8 +16,10 @@
  <input name="item_text" id="id_text"
         class="from-control input lg"
  placeholder="Enter a to-do item" />
- {% csrf_token %}
-     <div class="from-group-has-error">
+     {{ form.text }}
+     {% csrf_token %}
+     {% if error _}
+     <div class="from-group has-error">
           <span class="help-block">{{ error }}</span>
          </div>
  </form>
