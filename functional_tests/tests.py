@@ -137,6 +137,4 @@ class NewVisitorTest(StaticLiveServerTestCase):
 			inputbox.location["x"] + inputbox.size["width"] / 2,
 			260,
 			delta=10
-		)
-
-		self.fail("Proceed with the tests!")
+		):
